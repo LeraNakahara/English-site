@@ -1,0 +1,393 @@
+/* ОБЩИЕ СТИЛИ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Aleo', serif;
+    background-color: #D8CFC0;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ========== ХЕДДЕР (ШАПКА) ========== */
+.site-header {
+    background-color: #325573;  /* Твой цвет */
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* ЛЕВАЯ ЧАСТЬ - логотип и название */
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.logo-link:hover {
+    opacity: 0.8;  /* Эффект при наведении */
+}
+
+.header-icon {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.logo-text {
+    font-family: 'Aleo', serif;
+    font-weight: bold;
+    font-size: 36px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+/* ПРАВАЯ ЧАСТЬ - навигация */
+.header-nav {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-link {
+    font-family: 'Aleo', serif;
+    font-weight: bold;
+    font-size: 36px;
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+/* ========== ОСНОВНОЙ БЛОК (ГЛАВНАЯ СТРАНИЦА) ========== */
+.main-block {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+}
+
+.hero-card {
+    width: 600px;
+    max-width: 100%;  /* Чтобы на маленьких экранах не вылезал */
+    background-color: #A65E5E;
+    border-radius: 19px;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.hero-icon img {
+    width: 150px !important;
+    height: auto !important;
+    display: block;
+}
+
+.hero-icon img {
+    width: 80px;
+    height: auto;
+    display: block;
+}
+
+/* Текст справа */
+.hero-text {
+    flex: 1;
+}
+
+.hero-title {
+    font-family: 'Aleo', serif;
+    font-weight: bold;
+    font-size: 36px;
+    color: white;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.hero-subtitle {
+    font-family: 'Aleo', serif;
+    font-size: 28px;
+    color: white;
+    margin: 5px 0;
+}
+
+.hero-description {
+    font-family: 'Aleo', serif;
+    font-size: 24px;
+    color: white;
+    margin-top: 10px;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 700px) {
+    .hero-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .hero-title {
+        font-size: 28px;
+    }
+    
+    .hero-subtitle {
+        font-size: 22px;
+    }
+    
+    .hero-description {
+        font-size: 18px;
+    }
+}
+
+/* ========== БЛОК С КОТИКАМИ И ТЕКСТОМ ========== */
+.cats-section {
+    background-color: #D8CFC0;
+    padding: 50px 20px;
+}
+
+.cats-container {
+    max-width: 1600px;  /* Увеличил максимальную ширину */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  /* Раздвигает элементы к краям */
+    gap: 20px;  /* Минимальный отступ между элементами */
+    flex-wrap: wrap;
+}
+
+.cat-left,
+.cat-right {
+    flex-shrink: 0;
+}
+
+.cat-left img,
+.cat-right img {
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.cats-text {
+    flex: 1;  /* Растягивается на всё свободное место */
+    min-width: 300px;
+    text-align: center;
+}
+
+.cats-title {
+    font-family: 'Aleo', serif;
+    font-weight: bold;
+    font-size: 36px;
+    color: #325573;
+    margin-bottom: 25px;
+}
+
+.cats-description {
+    font-family: 'Aleo', serif;
+    font-weight: bold;
+    font-size: 36px;
+    color: #325573;  /* ← Меняем цвет с #333 на #325573 */
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.cats-description-last {
+    font-family: 'Aleo', serif;
+    font-weight: bold;
+    font-size: 48px;
+    color: #325573;  /* ← Меняем цвет с #333 на #325573 */
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* ========== ТРИ КНОПКИ-ПРЯМОУГОЛЬНИКА ========== */
+.buttons-section {
+    background-color: #D8CFC0;
+    padding: 50px 20px;
+}
+
+.buttons-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;  /* Выравнивание по нижнему краю */
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* Обычная кнопка-карточка */
+.action-card {
+    width: 350px;  /* Увеличил ширину */
+    background-color: #A65E5E;
+    border-radius: 19px;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* ГЛАВНАЯ КНОПКА "Пройти тест" — больше, выше, важнее! */
+.action-card-main {
+    width: 420px;  /* Шире обычной */
+    padding: 35px 40px;  /* Больше внутренних отступов */
+    background-color: #A65E5E;
+    position: relative;
+    transform: translateY(-20px);  /* Поднимаем выше остальных */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.action-card-main:hover {
+    transform: translateY(-25px);  /* При наведении поднимается ещё выше */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Иконка (котик) слева */
+.action-icon {
+    flex-shrink: 0;
+}
+
+.action-icon img {
+    width: 70px;
+    height: auto;
+    display: block;
+}
+
+/* У главной кнопки иконка чуть больше */
+.action-card-main .action-icon img {
+    width: 90px;  /* Котик крупнее */
+}
+
+/* Текст справа */
+.action-text {
+    flex: 1;
+}
+
+.action-title {
+    font-family: 'Aleo', serif;
+    font-weight: bold;
+    font-size: 28px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+/* У главной кнопки текст крупнее */
+.action-card-main .action-title {
+    font-size: 34px;  /* Текст крупнее */
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 1000px) {
+    .buttons-container {
+        align-items: center;
+    }
+    
+    .action-card {
+        width: 300px;
+    }
+    
+    .action-card-main {
+        width: 350px;
+        transform: translateY(-10px);
+    }
+    
+    .action-title {
+        font-size: 24px;
+    }
+    
+    .action-card-main .action-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 700px) {
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .action-card {
+        width: 280px;
+    }
+    
+    .action-card-main {
+        width: 320px;
+        transform: translateY(0);  /* На телефоне не поднимаем, чтобы не мешало */
+        order: -1;  /* Ставим первой на телефоне */
+    }
+    
+    .action-card-main::before {
+        font-size: 24px;
+        top: -12px;
+    }
+}
+
+/* ========== ФУТЕР (ПОДВАЛ) ========== */
+.site-footer {
+    background-color: #325573;  /* Тот же цвет, что у хеддера */
+    padding: 10px 10px;
+    margin-top: 50px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-text {
+    font-family: 'Aleo', serif;
+    font-size: 24px;
+    font-weight: normal;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.social-link {
+    display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.social-link img {
+    width: 40px;
+    height: 40px;
+    display: block;
+}
