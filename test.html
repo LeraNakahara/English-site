@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StepUp English - Тест на уровень языка</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Aleo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ХЕДДЕР -->
+    <header class="site-header">
+        <div class="header-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/icon_header.png" alt="StepUp English Icon" class="header-icon">
+                <span class="logo-text">StepUp English</span>
+            </a>
+            <nav class="header-nav">
+                <a href="statistics.html" class="nav-link">Статистика</a>
+                <a href="test.html" class="nav-link">Тест</a>
+                <a href="about.html" class="nav-link">Информация</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <main class="test-page">
+        
+        <!-- БЛОК с иконкой и заголовком -->
+        <section class="about-hero">
+            <div class="hero-card about-hero-card test-hero-card">
+                <div class="hero-icon">
+                    <img src="images/icon.png" alt="Иконка">
+                </div>
+                <div class="hero-text test-hero-text">
+                    <div class="test-hero-title">Тест на уровень языка</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ФИЛЬТРЫ -->
+        <section class="filter-section">
+            <div class="filter-container">
+                <button class="filter-btn active" data-category="all">Все вопросы</button>
+                <button class="filter-btn" data-category="reading">📖 Чтение</button>
+                <button class="filter-btn" data-category="grammar">📝 Грамматика</button>
+                <button class="filter-btn" data-category="vocabulary">📚 Словарный запас</button>
+            </div>
+        </section>
+
+        <!-- КОНТЕЙНЕР ДЛЯ ВОПРОСОВ -->
+        <section class="questions-section">
+            <div class="questions-container" id="questionsContainer"></div>
+        </section>
+
+        <!-- КНОПКА ЗАВЕРШИТЬ ТЕСТ -->
+        <section class="submit-section">
+            <button class="submit-test-btn" id="submitTestBtn">Завершить тест</button>
+        </section>
+
+        <!-- МОДАЛЬНОЕ ОКНО С РЕЗУЛЬТАТОМ -->
+        <div class="result-modal" id="resultModal">
+            <div class="result-modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 class="result-title">Ваш уровень языка:</h2>
+                <div class="result-level" id="resultLevel"></div>
+                <p class="result-description" id="resultDescription"></p>
+                <button class="restart-test-btn" id="restartTestBtn">Пройти тест заново</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ПОДВАЛ -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p class="footer-text">Сообщите нам, если возникли трудности!</p>
+            <div class="social-icons">
+                <a href="#" class="social-link">
+                    <img src="images/wat.png" alt="WhatsApp">
+                </a>
+                <a href="#" class="social-link">
+                    <img src="images/vk.png" alt="ВКонтакте">
+                </a>
+                <a href="#" class="social-link">
+                    <img src="images/tg.png" alt="Telegram">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== ВОПРОСЫ ТЕСТА ==========
+        const questions = [
+            // ЧТЕНИЕ (READING) - 5 вопросов
+            {
+                id: 1,
+                category: "reading",
+                text: "Прочитайте текст: 'The store will open at 9 AM tomorrow.' В какое время откроется магазин?",
+                options: ["8 AM", "9 AM", "10 AM", "11 AM"],
+                correct: 1,
+                level: "A1"
+            },
+            {
+                id: 2,
+                category: "reading",
+                text: "Что означает фраза 'She is feeling under the weather'?",
+                options: ["Она чувствует себя хорошо", "Она больна", "Она под дождём", "Она в хорошем настроении"],
+                correct: 1,
+                level: "B1"
+            },
+            {
+                id: 3,
+                category: "reading",
+                text: "Прочитайте: 'The company's profits have skyrocketed this quarter.' Что значит 'skyrocketed'?",
+                options: ["Резко упали", "Не изменились", "Резко выросли", "Стабильно растут"],
+                correct: 2,
+                level: "B2"
+            },
+            {
+                id: 4,
+                category: "reading",
+                text: "Что означает идиома 'to spill the beans'?",
+                options: ["Разлить бобы", "Выдать секрет", "Съесть обед", "Приготовить ужин"],
+                correct: 1,
+                level: "C1"
+            },
+            {
+                id: 5,
+                category: "reading",
+                text: "В каком предложении нет ошибки?",
+                options: [
+                    "He go to school every day",
+                    "She doesn't likes coffee",
+                    "They are playing football now",
+                    "I can to swim"
+                ],
+                correct: 2,
+                level: "A2"
+            },
+
+            // ГРАММАТИКА (GRAMMAR) - 5 вопросов
+            {
+                id: 6,
+                category: "grammar",
+                text: "Выберите правильный вариант: 'She ___ to London last year.'",
+                options: ["go", "went", "gone", "goes"],
+                correct: 1,
+                level: "A1"
+            },
+            {
+                id: 7,
+                category: "grammar",
+                text: "Выберите правильный вариант: 'If I ___ you, I would study more.'",
+                options: ["am", "was", "were", "is"],
+                correct: 2,
+                level: "B1"
+            },
+            {
+                id: 8,
+                category: "grammar",
+                text: "Выберите правильный вариант: 'By the time we arrived, the movie ___.'",
+                options: ["started", "had started", "was starting", "has started"],
+                correct: 1,
+                level: "B2"
+            },
+            {
+                id: 9,
+                category: "grammar",
+                text: "Выберите правильный вариант: 'Not only ___ late, but he also forgot his homework.'",
+                options: ["he was", "was he", "he is", "is he"],
+                correct: 1,
+                level: "C1"
+            },
+            {
+                id: 10,
+                category: "grammar",
+                text: "Выберите правильный вариант: 'She suggested ___ to the cinema.'",
+                options: ["go", "to go", "going", "went"],
+                correct: 2,
+                level: "B1"
+            },
+
+            // СЛОВАРНЫЙ ЗАПАС (VOCABULARY) - 5 вопросов
+            {
+                id: 11,
+                category: "vocabulary",
+                text: "Выберите синоним к слову 'happy':",
+                options: ["Sad", "Angry", "Joyful", "Tired"],
+                correct: 2,
+                level: "A1"
+            },
+            {
+                id: 12,
+                category: "vocabulary",
+                text: "Что означает слово 'meticulous'?",
+                options: ["Небрежный", "Тщательный", "Быстрый", "Медленный"],
+                correct: 1,
+                level: "C1"
+            },
+            {
+                id: 13,
+                category: "vocabulary",
+                text: "Выберите антоним к слову 'expand':",
+                options: ["Grow", "Increase", "Contract", "Develop"],
+                correct: 2,
+                level: "B2"
+            },
+            {
+                id: 14,
+                category: "vocabulary",
+                text: "Что означает фразовый глагол 'give up'?",
+                options: ["Отдать", "Сдаться", "Поднять", "Увеличить"],
+                correct: 1,
+                level: "B1"
+            },
+            {
+                id: 15,
+                category: "vocabulary",
+                text: "Выберите правильное слово: 'He is very ___ — he always tells the truth.'",
+                options: ["honest", "lazy", "rude", "selfish"],
+                correct: 0,
+                level: "A2"
+            }
+        ];
+
+        let userAnswers = new Array(15).fill(null);
+
+        // Функция отображения вопросов с фильтром
+        function renderQuestions(category = "all") {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+            
+            const filteredQuestions = category === "all" 
+                ? questions 
+                : questions.filter(q => q.category === category);
+            
+            filteredQuestions.forEach(q => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-card';
+                questionDiv.dataset.id = q.id;
+                
+                const optionsHtml = q.options.map((opt, idx) => {
+                    const isChecked = userAnswers[q.id - 1] === idx;
+                    return `
+                        <label class="option-label">
+                            <input type="radio" name="q${q.id}" value="${idx}" ${isChecked ? 'checked' : ''}>
+                            <span>${opt}</span>
+                        </label>
+                    `;
+                }).join('');
+                
+                questionDiv.innerHTML = `
+                    <h3 class="question-text">${q.id}. ${q.text}</h3>
+                    <div class="options-group">
+                        ${optionsHtml}
+                    </div>
+                `;
+                
+                container.appendChild(questionDiv);
+            });
+            
+            // Добавляем обработчики для новых радиокнопок
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const name = e.target.name;
+                    const qId = parseInt(name.substring(1));
+                    userAnswers[qId - 1] = parseInt(e.target.value);
+                });
+            });
+        }
+        
+        // Функция подсчёта уровня
+        function calculateLevel() {
+            let correctCount = 0;
+            questions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.correct) {
+                    correctCount++;
+                }
+            });
+            
+            const percentage = (correctCount / 15) * 100;
+            
+            if (percentage >= 85) return { level: "C2", desc: "Совершенное владение! Вы понимаете практически всё, что слышите и читаете. Поздравляем с выдающимся результатом!" };
+            if (percentage >= 70) return { level: "C1", desc: "Продвинутый уровень! Вы свободно выражаете мысли и понимаете сложные тексты. Отличный результат!" };
+            if (percentage >= 55) return { level: "B2", desc: "Уровень выше среднего! Вы можете бегло общаться с носителями языка. Хороший результат!" };
+            if (percentage >= 40) return { level: "B1", desc: "Средний уровень! Вы можете поддержать разговор на знакомые темы. Продолжайте в том же духе!" };
+            if (percentage >= 25) return { level: "A2", desc: "Базовый уровень! Вы понимаете простые фразы и можете общаться в повседневных ситуациях. Учитесь дальше!" };
+            return { level: "A1", desc: "Начальный уровень! Вы делаете первые шаги в английском. Не останавливайтесь — у вас всё получится!" };
+        }
+        
+        // Показать результат
+        function showResult() {
+            const unanswered = userAnswers.some(a => a === null);
+            if (unanswered) {
+                alert("Пожалуйста, ответьте на все вопросы перед завершением теста!");
+                return false;
+            }
+            
+            const result = calculateLevel();
+            const modal = document.getElementById('resultModal');
+            const resultLevel = document.getElementById('resultLevel');
+            const resultDescription = document.getElementById('resultDescription');
+            
+            resultLevel.textContent = result.level;
+            resultDescription.textContent = result.desc;
+            modal.style.display = 'flex';
+            return true;
+        }
+        
+        // Сброс теста
+        function resetTest() {
+            userAnswers = new Array(15).fill(null);
+            renderQuestions('all');
+            
+            // Сброс активной кнопки фильтра
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === 'all') {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestions('all');
+            
+            // Фильтры
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const category = btn.dataset.category;
+                    renderQuestions(category);
+                });
+            });
+            
+            // Кнопка завершения
+            document.getElementById('submitTestBtn').addEventListener('click', showResult);
+            
+            // Закрытие модального окна
+            document.querySelector('.close-modal').addEventListener('click', () => {
+                document.getElementById('resultModal').style.display = 'none';
+            });
+            
+            // Кнопка перезапуска
+            document.getElementById('restartTestBtn').addEventListener('click', () => {
+                document.getElementById('resultModal').style.display = 'none';
+                resetTest();
+            });
+            
+            // Закрытие по клику вне окна
+            window.addEventListener('click', (e) => {
+                const modal = document.getElementById('resultModal');
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
